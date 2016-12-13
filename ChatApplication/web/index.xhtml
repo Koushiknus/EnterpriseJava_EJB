@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Note Display</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="#{request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/assets/css/main.css"/>
+        <script src="#{request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="#{request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/assets/js/notews.js"></script>
+        <style>
+            body {
+                padding-top: 0px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#{request.contextPath}">CA2</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <c:choose>
+                            <c:when test="#{request.isUserInRole('manage') == true}">
+                                <li><a href="#{request.contextPath}/faces/manage/menu.xhtml">Note Management</a></li>
+                                <li style="padding-top: 15px;"><h:form><h:commandLink action="#{loginBean.logout()}" value="Logout"></h:commandLink></h:form></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="#{request.contextPath}/faces/login.xhtml">Login</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <h1>Note Dashboard</h1>
+            <h:form>
+                <ul class="nav nav-pills">
+                    <ui:repeat value="#{noteBean.categoryList}" var="cat">
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="catIds[]" checked="checked" id="catIds-${cat.id}" value="${cat.catName}"/><h:outputText value="${cat.catName}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                            </div>
+                        </li>
+                    </ui:repeat>
+                </ul>
+                <table id="table-notes" class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Posted Date</th>
+                      <th>Category</th>
+                      <th>Content</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{noteBean.allNotes}" var="note">
+                            <tr>
+                              <td><h:outputText value="${note.getString('title')}"/></td>
+                              <td><h:outputText value="${note.getString('posted_date')}"/></td>
+                              <td><h:outputText value="${note.getString('category_name')}"/></td>
+                              <td><h:outputText value="${note.getString('content')}"/></td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

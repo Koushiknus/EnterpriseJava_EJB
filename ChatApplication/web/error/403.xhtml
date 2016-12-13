@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>403 error page</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="#{request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/assets/css/main.css"/>
+        <script src="#{request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="#{request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/assets/js/main.js"></script>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="error-template">
+                        <h1>Oops!</h1>
+                        <h2>Don't worry. It's 403 error only.</h2>
+                        <div class="error-details">Access denied</div>
+                        <div><a href="#{request.contextPath}">Back To Home Page</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

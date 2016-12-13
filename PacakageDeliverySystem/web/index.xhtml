@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Add Package</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="#{request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/assets/css/main.css"/>
+        <script src="#{request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="#{request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/assets/js/main.js"></script>
+        <style>
+            body {
+                padding-top: 0px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#{request.contextPath}">CA3</a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-login">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <a href="#" id="register-form-link">Add Package Detail</a>
+                                </div>
+                            </div>
+                            <hr/>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h:form id="register-form" role="form" method="post">
+                                        <h:messages />
+                                        <div class="form-group">
+                                            <h:inputText id="title" name="name" maxlength="256" tabindex="1" class="form-control" value="#{deliveryBean.name}" a:placeholder="Package Name"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <h:inputText id="address" name="address" maxlength="256" tabindex="2" class="form-control" value="#{deliveryBean.address}" a:placeholder="Address" />
+                                        </div>
+                                        <div class="form-group">
+                                            <h:inputText id="phone" name="phone" maxlength="24" tabindex="3" class="form-control" value="#{deliveryBean.phone}" a:placeholder="Phone" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <h:commandButton value="Add" id="register-submit" tabindex="4" class="form-control btn btn-register" action="#{deliveryBean.addPackage}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	</div>
+    </h:body>
+</html>
+

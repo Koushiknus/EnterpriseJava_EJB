@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Posted Notes</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="#{request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/assets/css/main.css"/>
+        <script src="#{request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="#{request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <style>
+            body {
+                padding-top: 0px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#{request.contextPath}">CA2</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#{request.contextPath}/faces/manage/menu.xhtml">Note Management</a></li>
+                        <li style="padding-top: 15px;"><h:form><h:commandLink action="#{loginBean.logout()}" value="Logout"></h:commandLink></h:form></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Posted Date</th>
+                <th>Category</th>
+                <th>Content</th>
+              </tr>
+            </thead>
+            <tbody>
+                <ui:repeat value="#{noteBean.noteList}" var="note">
+                    <tr>
+                      <td><h:outputText value="${note.getString('title')}"/></td>
+                      <td><h:outputText value="${note.getString('posted_date')}"/></td>
+                      <td><h:outputText value="${note.getString('category_name')}"/></td>
+                      <td><h:outputText value="${note.getString('content')}"/></td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+          </table>
+        </div>
+    </h:body>
+</html>
+
